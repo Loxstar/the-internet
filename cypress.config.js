@@ -3,14 +3,14 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   e2e: {
     // implement node event listeners here
-    baseurl: 'https://the-internet.herokuapp.com/',
+    baseurl: 'https://example.cypress.io/cypress-api',
+    specPattern: 'cypress/e2e/**/*.cy.js',
     pageLoadTimeout: 60000,
     defaultCommandTimeout: 12000,
     ViewportWidth: 1440,
     ViewportHeight: 900,
-    chromeWebSecurity: false,
+    chromeWebSecurity: true,
     video: false,
-    screenshotsFolder: ' tmp/screenshot', screenshotOnRunFailure: true,
     trashAssetsBeforeRuns: true,
   },
 },

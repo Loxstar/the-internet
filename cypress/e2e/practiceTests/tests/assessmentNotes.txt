@@ -1,0 +1,56 @@
+Basic API Requests
+
+cy.request({
+  method: 'GET',
+  url: '/api/data',
+  headers: {
+    'Authorization': 'Bearer yourAuthTokenHere',
+    'Custom-Header': 'someValue'
+  }
+}).then((response) => {
+  // Assertions on the response
+});
+
+
+
+Handling Basic Authorization
+
+cy.visit('http://localhost:3000', {
+  auth: {
+    username: 'yourUsername',
+    password: 'yourPassword'
+  }
+});
+
+// Option 2: Including credentials directly in the URL (less secure)
+cy.visit('http://yourUsername:yourPassword@localhost:3000');
+
+
+
+Storing and Reusung Tokens
+
+Cypress.Commands.add('loginAndStoreToken', () => {
+  cy.request({
+    method: 'POST',
+    url: '/api/login',
+    body: { username: 'user', password: 'password' }
+  }).then((resp) => {
+    const token = resp.body.token;
+    Cypress.env('authToken', token);
+  });
+});
+
+// Later, in a test or command:
+beforeEach(() => {
+  cy.loginAndStoreToken(); // Ensure token is available
+});
+
+it('should access protected resources', () => {
+  cy.request({
+    method: 'GET',
+    url: '/api/protected',
+    headers: {
+      'Authorization': `Bearer ${Cypress.env('authToken')}`
+    }
+  });
+});

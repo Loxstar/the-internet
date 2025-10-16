@@ -1,5 +1,5 @@
 /node_modules
-/cypress/e2e/2-advanced-examples.*
-/cypress/e2e/2-advanced-examples.*
-/cypress/e2e/practiceTests/tests/assessmentNotes.*
+/cypress/e2e/2-advanced-examples.*js
+/cypress/e2e/2-advanced-examples.*js
+/cypress/e2e/practiceTests/tests/assessmentNotes.*txt
 .env
